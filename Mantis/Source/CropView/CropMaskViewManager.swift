@@ -48,17 +48,18 @@ class CropMaskViewManager {
     }
     
     func showDimmingBackground() {
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.25) {
             self.dimmingView.alpha = 1
             self.visualEffectView.alpha = 0
         }
     }
     
     func showVisualEffectBackground() {
-        UIView.animate(withDuration: 0.5) {
-            self.dimmingView.alpha = 0
-            self.visualEffectView.alpha = 1
-        }
+        UIView.animate(withDuration: 0.25, delay: 0, options: [],
+                       animations: {
+                        self.dimmingView.alpha = 0
+                        self.visualEffectView.alpha = 1
+        }, completion: nil)
     }
     
     func adaptMaskTo(match cropRect: CGRect) {

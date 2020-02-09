@@ -12,8 +12,9 @@ class CropOverlayView: UIView {
     var gridHidden = true
     var gridColor = UIColor(white: 0.8, alpha: 1)
     
-    private let cropOverLayerCornerWidth = CGFloat(20.0)
-    
+    private let cropOverLayerCornerWidth = CGFloat(12.0)
+    private let showGridLines = false
+
     var gridLineNumberType: GridLineNumberType = .crop {
         didSet {
             setupGridLines()
@@ -23,7 +24,7 @@ class CropOverlayView: UIView {
     private var horizontalGridLines: [UIView] = []
     private var verticalGridLines: [UIView] = []
     private var borderLine: UIView = UIView()
-    private var corner: [UIView] = []
+    private var corner: [UIImageView] = []
     private let borderThickness = CGFloat(1.0)
     
     override var frame: CGRect {
@@ -44,10 +45,11 @@ class CropOverlayView: UIView {
         super.init(coder: aDecoder)
     }
     
-    private func createNewLine() -> UIView {
-        let view = UIView()
-        view.frame = CGRect.zero
-        view.backgroundColor = .white
+    private func createNewLine(named name: String = "") -> UIImageView {
+        let view = UIImageView()
+        view.image = UIImage(named: name)
+        view.frame = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: cropOverLayerCornerWidth, height: cropOverLayerCornerWidth))
+        view.backgroundColor = .clear
         addSubview(view)
         return view
     }
@@ -58,8 +60,19 @@ class CropOverlayView: UIView {
         borderLine.layer.borderWidth = borderThickness
         borderLine.layer.borderColor = UIColor.white.cgColor
         
-        for _ in 0..<8 {
-            corner.append(createNewLine())
+        for i in 0..<4 {
+            let view = createNewLine(named: "corner_top_left_icon")
+            corner.append(view)
+            switch i {
+            case 0: break
+            case 1:
+                view.rotate(in: 90)
+            case 2:
+                view.rotate(in: 180)
+            case 3:
+                view.rotate(in: -90)
+            default: break
+            }
         }
         
         setupGridLines()
@@ -90,9 +103,11 @@ class CropOverlayView: UIView {
     }
     
     private func layoutGridLines() {
-        for i in 0..<gridLineNumberType.rawValue {
-            horizontalGridLines[i].frame = CGRect(x: 0, y: CGFloat(i + 1) * frame.height / CGFloat(gridLineNumberType.rawValue + 1), width: frame.width, height: 1)
-            verticalGridLines[i].frame = CGRect(x: CGFloat(i + 1) * frame.width / CGFloat(gridLineNumberType.rawValue + 1), y: 0, width: 1, height: frame.height)
+        if showGridLines {
+            for i in 0..<gridLineNumberType.rawValue {
+                horizontalGridLines[i].frame = CGRect(x: 0, y: CGFloat(i + 1) * frame.height / CGFloat(gridLineNumberType.rawValue + 1), width: frame.width, height: 1)
+                verticalGridLines[i].frame = CGRect(x: CGFloat(i + 1) * frame.width / CGFloat(gridLineNumberType.rawValue + 1), y: 0, width: 1, height: frame.height)
+            }
         }
     }
     
@@ -104,20 +119,24 @@ class CropOverlayView: UIView {
     private func setupHorizontalGridLines() {
         horizontalGridLines.forEach { $0.removeFromSuperview() }
         horizontalGridLines.removeAll()
-        for _ in 0..<gridLineNumberType.rawValue {
-            let view = createNewLine()
-            view.backgroundColor = gridColor
-            horizontalGridLines.append(view)
+        if showGridLines {
+            for _ in 0..<gridLineNumberType.rawValue {
+                let view = createNewLine()
+                view.backgroundColor = gridColor
+                horizontalGridLines.append(view)
+            }
         }
     }
     
     private func setupVerticalGridLines() {
         verticalGridLines.forEach { $0.removeFromSuperview() }
         verticalGridLines.removeAll()
-        for _ in 0..<gridLineNumberType.rawValue {
-            let view = createNewLine()
-            view.backgroundColor = gridColor
-            verticalGridLines.append(view)
+        if showGridLines {
+            for _ in 0..<gridLineNumberType.rawValue {
+                let view = createNewLine()
+                view.backgroundColor = gridColor
+                verticalGridLines.append(view)
+            }
         }
     }
     
@@ -129,7 +148,7 @@ class CropOverlayView: UIView {
     }
     
     private func layoutCornerLines() {
-        let borderThickness = CGFloat(3.0)
+        let borderThickness = cropOverLayerCornerWidth * 2/3
         
         let topLeftHorizonalLayerFrame = CGRect(x: -borderThickness, y: -borderThickness, width: cropOverLayerCornerWidth, height: borderThickness)
         let topLeftVerticalLayerFrame = CGRect(x: -borderThickness, y: -borderThickness, width: borderThickness, height: cropOverLayerCornerWidth)
@@ -140,24 +159,21 @@ class CropOverlayView: UIView {
         let veticalDistanceForVCorner = bounds.height + 2 * borderThickness - cropOverLayerCornerWidth
         
         for (i, line) in corner.enumerated() {
-            let lineType: CornerLineType = CropOverlayView.CornerLineType(rawValue: i) ?? .topLeftVertical
-            switch lineType {
-            case .topLeftHorizontal:
-                line.frame = topLeftHorizonalLayerFrame
-            case .topLeftVertical:
-                line.frame = topLeftVerticalLayerFrame
-            case .topRightHorizontal:
-                line.frame = topLeftHorizonalLayerFrame.offsetBy(dx: horizontalDistanceForHCorner, dy: 0)
-            case .topRightVertical:
-                line.frame = topLeftVerticalLayerFrame.offsetBy(dx: horizontalDistanceForVCorner, dy: 0)
-            case .bottomRightHorizontal:
-                line.frame = topLeftHorizonalLayerFrame.offsetBy(dx: horizontalDistanceForHCorner, dy: verticalDistanceForHCorner)
-            case .bottomRightVertical:
-                line.frame = topLeftVerticalLayerFrame.offsetBy(dx: horizontalDistanceForVCorner, dy: veticalDistanceForVCorner)
-            case .bottomLeftHorizontal:
-                line.frame = topLeftHorizonalLayerFrame.offsetBy(dx: 0, dy: verticalDistanceForHCorner)
-            case .bottomLeftVertical:
-                line.frame = topLeftVerticalLayerFrame.offsetBy(dx: 0, dy: veticalDistanceForVCorner)
+            switch i {
+            case 0:
+                line.frame.origin = topLeftHorizonalLayerFrame.origin
+            case 1:
+                line.frame.origin = topLeftHorizonalLayerFrame.offsetBy(dx: horizontalDistanceForHCorner, dy: 0).origin
+            case 2:
+                let h = topLeftHorizonalLayerFrame.offsetBy(dx: horizontalDistanceForHCorner, dy: verticalDistanceForHCorner).origin
+                let v = topLeftVerticalLayerFrame.offsetBy(dx: horizontalDistanceForVCorner, dy: veticalDistanceForVCorner).origin
+                line.frame.origin = CGPoint.init(x: h.x, y: v.y)
+            case 3:
+                let h = topLeftHorizonalLayerFrame.offsetBy(dx: 0, dy: verticalDistanceForHCorner).origin
+                let v = topLeftVerticalLayerFrame.offsetBy(dx: 0, dy: veticalDistanceForVCorner).origin
+                line.frame.origin = CGPoint.init(x: h.x, y: v.y)
+            default:
+                break
             }
         }
     }
@@ -202,4 +218,20 @@ extension CropOverlayView {
         case crop = 2
         case rotate = 8
     }
+}
+
+fileprivate
+extension UIView {
+
+    /**
+     Rotate a view by specified degrees
+
+     - parameter angle: angle in degrees
+     */
+    func rotate(in angle: CGFloat) {
+        let radians = angle / 180.0 * CGFloat.pi
+        let rotation = self.transform.rotated(by: radians);
+        self.transform = rotation
+    }
+
 }

@@ -10,6 +10,14 @@ import UIKit
 import Mantis
 
 class ViewController: UIViewController, CropViewControllerDelegate {
+    func cropViewControllerDidRender(_ cropViewController: CropViewController) {
+        print("cropViewControllerDidRender(_ cropViewController: CropViewController)")
+    }
+    func cropViewControllerDidEndRender(_ cropViewController: CropViewController) {
+        print("cropViewControllerDidEndRender(_ cropViewController: CropViewController) ")
+    }
+    
+    
     var image = UIImage(named: "sunflower.jpg")
     
     @IBOutlet weak var croppedImageView: UIImageView!
@@ -67,7 +75,7 @@ class ViewController: UIViewController, CropViewControllerDelegate {
             let cropViewController = Mantis.cropViewController(image: image, config: config)
             cropViewController.modalPresentationStyle = .fullScreen
             cropViewController.delegate = self
-            cropViewController.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 16.0 / 9.0)
+        cropViewController.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 295.0/184.0)
             present(cropViewController, animated: true)
         }
     
@@ -96,6 +104,9 @@ class ViewController: UIViewController, CropViewControllerDelegate {
         }
     }
     
+    func cropViewControllerWillDismiss(_ cropViewController: CropViewController) {
+        print("sdasdasdas")
+    }
     func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage) {
         croppedImageView.image = cropped
     }    

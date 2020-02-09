@@ -29,6 +29,8 @@ public protocol CropViewControllerDelegate: class {
     func cropViewControllerDidFailToCrop(_ cropViewController: CropViewController, original: UIImage)
     func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage)
     func cropViewControllerWillDismiss(_ cropViewController: CropViewController)
+    func cropViewControllerDidRender(_ cropViewController: CropViewController)
+    func cropViewControllerDidEndRender(_ cropViewController: CropViewController)
 }
 
 public extension CropViewControllerDelegate {
@@ -321,6 +323,13 @@ extension CropViewController: CropViewDelegate {
     
     func cropViewDidBecomeNonResettable(_ cropView: CropView) {
         cropToolbar.resetButton?.isHidden = true
+    }
+    
+    func cropViewDidRender(_ cropView: CropView) {
+        delegate?.cropViewControllerDidRender(self)
+    }
+    func cropViewDidEndRender(_ cropView: CropView) {
+        delegate?.cropViewControllerDidEndRender(self)
     }
 }
 

@@ -27,12 +27,14 @@ import UIKit
 protocol CropViewDelegate: class {
     func cropViewDidBecomeResettable(_ cropView: CropView)
     func cropViewDidBecomeNonResettable(_ cropView: CropView)
+    func cropViewDidRender(_ cropView: CropView)
+    func cropViewDidEndRender(_ cropView: CropView)
 }
 
 let cropViewMinimumBoxSize: CGFloat = 42
 let minimumAspectRatio: CGFloat = 0
 let hotAreaUnit: CGFloat = 64
-let cropViewPadding:CGFloat = 14.0
+let cropViewPadding:CGFloat = 40.0
 
 class CropView: UIView {
     var cropShapeType: CropShapeType = .rect
@@ -80,7 +82,8 @@ class CropView: UIView {
         super.init(frame: CGRect.zero)
 
         self.viewModel.statusChanged = { [weak self] status in
-            self?.render(by: status)
+            guard let `self` = self else { return }
+            self.render(by: status)
         }
         
         cropFrameKVO = viewModel.observe(\.cropBoxFrame,
@@ -105,7 +108,7 @@ class CropView: UIView {
     
     private func render(by viewStatus: CropViewStatus) {
         gridOverlayView.isHidden = false
-        
+        var isShowVisualEffectBackground = false
         switch viewStatus {
         case .initial:
             initalRender()
@@ -113,7 +116,7 @@ class CropView: UIView {
             viewModel.degrees = angle.degrees
             rotateScrollView()
         case .degree90Rotated:
-            cropMaskViewManager.showVisualEffectBackground()
+            isShowVisualEffectBackground = true
             gridOverlayView.isHidden = true
             rotationDial?.isHidden = true
         case .touchImage:
@@ -133,8 +136,15 @@ class CropView: UIView {
             gridOverlayView.setGrid(hidden: true, animated: true)
             rotationDial?.isHidden = false
             adaptAngleDashboardToCropBox()
-            cropMaskViewManager.showVisualEffectBackground()
+            isShowVisualEffectBackground = true
             checkImageStatusChanged()
+        }
+        
+        if isShowVisualEffectBackground == false {
+            self.delegate?.cropViewDidRender(self)
+        } else {
+            cropMaskViewManager.showVisualEffectBackground()
+            self.delegate?.cropViewDidEndRender(self)
         }
     }
     
@@ -231,7 +241,7 @@ class CropView: UIView {
         var config = DialConfig.Config()
         config.backgroundColor = .clear
         config.angleShowLimitType = .limit(angle: CGAngle(degrees: 40))
-        config.rotationLimitType = .limit(angle: CGAngle(degrees: 45))
+        config.rotationLimitType = .limit(angle: CGAngle(degrees: 180))
         config.numberShowSpan = 1
         
         let boardLength = min(bounds.width, bounds.height) * 0.6

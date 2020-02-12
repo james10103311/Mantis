@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomCroppingImageViewController">
+            <connections>
+                <outlet property="contentView" destination="TWa-RQ-btE" id="Kfa-Td-GaW"/>
+                <outlet property="introductionTitleLabel" destination="kr7-wL-bGQ" id="AZY-2E-Oo1"/>
+                <outlet property="maskCroppingImageView" destination="RA7-vJ-YDu" id="1IE-Yh-rJk"/>
+                <outlet property="view" destination="dvW-j6-I97" id="Zhg-gg-9mk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="dvW-j6-I97">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWa-RQ-btE" userLabel="ContentView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="766"/>
+                    <subviews>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RA7-vJ-YDu" userLabel="Mask View">
+                            <rect key="frame" x="40" y="279" width="334" height="208"/>
+                            <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="RA7-vJ-YDu" secondAttribute="height" multiplier="295:184" id="qOi-4q-Hzp"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kéo thả 4 góc để cắt ảnh CMND nằm trong khung" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kr7-wL-bGQ">
+                            <rect key="frame" x="40" y="532" width="334" height="38.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="RA7-vJ-YDu" secondAttribute="trailing" constant="40" id="4sj-o7-PwV"/>
+                        <constraint firstItem="kr7-wL-bGQ" firstAttribute="top" secondItem="RA7-vJ-YDu" secondAttribute="bottom" constant="45" id="941-IX-8f3"/>
+                        <constraint firstItem="kr7-wL-bGQ" firstAttribute="leading" secondItem="RA7-vJ-YDu" secondAttribute="leading" id="9kg-ex-nHm"/>
+                        <constraint firstItem="RA7-vJ-YDu" firstAttribute="centerY" secondItem="TWa-RQ-btE" secondAttribute="centerY" id="IND-98-qhu"/>
+                        <constraint firstItem="RA7-vJ-YDu" firstAttribute="leading" secondItem="TWa-RQ-btE" secondAttribute="leading" constant="40" id="KPp-Dc-uk5"/>
+                        <constraint firstItem="kr7-wL-bGQ" firstAttribute="trailing" secondItem="RA7-vJ-YDu" secondAttribute="trailing" id="v5u-IP-yCl"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exp-fA-a4X">
+                    <rect key="frame" x="20" y="66" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="kzM-aS-9Ev">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="enableScaling" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstAttribute="width" secondItem="exp-fA-a4X" secondAttribute="height" multiplier="1:1" id="qBh-9G-eD2"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="back_white_rounded_icon"/>
+                    <connections>
+                        <action selector="backAction" destination="-1" eventType="touchUpInside" id="tAO-E8-1Sn"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EmD-TS-Lf8">
+                    <rect key="frame" x="24" y="790" width="366" height="48"/>
+                    <color key="backgroundColor" red="1" green="0.50980392159999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="ydM-lg-jfR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                    <state key="normal" title="Hoàn Tất">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="doneAction" destination="-1" eventType="touchUpInside" id="t83-AD-RMy"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="TWa-RQ-btE" firstAttribute="top" secondItem="dvW-j6-I97" secondAttribute="top" id="9Id-2G-k9g"/>
+                <constraint firstItem="TWa-RQ-btE" firstAttribute="leading" secondItem="n8Q-ck-Ail" secondAttribute="leading" id="Av4-j2-tuo"/>
+                <constraint firstItem="EmD-TS-Lf8" firstAttribute="leading" secondItem="n8Q-ck-Ail" secondAttribute="leading" constant="24" id="Fn4-oT-rBa"/>
+                <constraint firstItem="TWa-RQ-btE" firstAttribute="trailing" secondItem="n8Q-ck-Ail" secondAttribute="trailing" id="NIR-Eg-B83"/>
+                <constraint firstItem="exp-fA-a4X" firstAttribute="leading" secondItem="n8Q-ck-Ail" secondAttribute="leading" constant="20" id="UQy-gi-3tz">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableScaling" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
+                <constraint firstItem="EmD-TS-Lf8" firstAttribute="top" secondItem="TWa-RQ-btE" secondAttribute="bottom" constant="24" id="Znw-MF-WS3"/>
+                <constraint firstItem="n8Q-ck-Ail" firstAttribute="trailing" secondItem="EmD-TS-Lf8" secondAttribute="trailing" constant="24" id="j6a-1C-h2l"/>
+                <constraint firstItem="exp-fA-a4X" firstAttribute="top" secondItem="n8Q-ck-Ail" secondAttribute="top" constant="22" id="thC-b2-Lk0">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableScaling" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
+                <constraint firstItem="n8Q-ck-Ail" firstAttribute="bottom" secondItem="EmD-TS-Lf8" secondAttribute="bottom" constant="24" id="umB-kw-Gyp"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="n8Q-ck-Ail"/>
+            <point key="canvasLocation" x="-250.72463768115944" y="23.4375"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="back_white_rounded_icon" width="32" height="32"/>
+    </resources>
+</document>

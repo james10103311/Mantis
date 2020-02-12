@@ -39,18 +39,9 @@ class ViewController: UIViewController {
     
     @IBAction func normalPresent(_ sender: Any) {
         let vc = CustomCameraViewController.loadCamera()
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
         vc.delegate = self
-//        guard let image = image else {
-//            return
-//        }
-//
-//        let config = Mantis.Config()
-//
-//        let cropViewController = Mantis.cropViewController(image: image, config: config)
-//        cropViewController.modalPresentationStyle = .fullScreen
-//        cropViewController.delegate = self
-//        present(cropViewController, animated: true)
     }
     
     @IBAction func hideRotationDialPresent(_ sender: Any) {
@@ -73,13 +64,9 @@ class ViewController: UIViewController {
                 return
             }
             
-            let config = Mantis.Config()
-            
-            let cropViewController = Mantis.cropViewController(image: image, config: config)
-            cropViewController.modalPresentationStyle = .fullScreen
-            cropViewController.delegate = self
-        cropViewController.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 295.0/184.0)
-            present(cropViewController, animated: true)
+        let vc = CustomCroppingImageViewController.loadCroppingImage(image: image)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
         }
     
     @IBAction func cropEllips(_ sender: Any) {

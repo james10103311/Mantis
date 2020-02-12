@@ -30,6 +30,8 @@ class CustomCameraViewController: UIViewController {
     @IBOutlet weak var maskImageViewHeightConstraint : NSLayoutConstraint!
     @IBOutlet weak var maskContentView               : UIView!
     
+    @IBOutlet weak var introductionTitleLabel        : UILabel!
+    
     weak var delegate: CustomCameraViewControllerDelegate? = nil
     
     private lazy var camera: UIImagePickerController = {
@@ -66,6 +68,7 @@ class CustomCameraViewController: UIViewController {
         super.viewDidLoad()
         updateCornerImages()
         addCameraAsSubView()
+        maskImageViewHeightConstraint.constant = 500
     }
     
     override func viewWillAppear(_ animated: Bool) {

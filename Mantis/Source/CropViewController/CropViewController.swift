@@ -153,6 +153,10 @@ public class CropViewController: UIViewController {
         return true
     }
     
+    public func hideCropToolbar(_ isHidden: Bool) {
+        cropToolbar.isHidden = isHidden
+    }
+    
     public override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
         return [.top, .bottom]
     }
@@ -258,7 +262,7 @@ public class CropViewController: UIViewController {
         cropView.counterclockwiseRotate90()
     }
     
-    private func handleCrop() {
+    public func handleCrop() {
         guard let image = cropView.crop() else {
             delegate?.cropViewControllerDidFailToCrop(self, original: cropView.image)
             return

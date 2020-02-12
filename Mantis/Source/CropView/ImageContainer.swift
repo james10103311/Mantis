@@ -13,7 +13,11 @@ class ImageContainer: UIView {
     lazy private var imageView: UIImageView = {
         let imageView = UIImageView(frame: bounds)
         imageView.layer.minificationFilter = .trilinear
-        imageView.accessibilityIgnoresInvertColors = true
+        if #available(iOS 11.0, *) {
+            imageView.accessibilityIgnoresInvertColors = true
+        } else {
+            // Fallback on earlier versions
+        }
         imageView.contentMode = .scaleAspectFit
         
         addSubview(imageView)

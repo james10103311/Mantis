@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomCameraViewController" customModule="MantisExample" customModuleProvider="target">
+            <connections>
+                <outlet property="blackView" destination="q0X-rG-Bbe" id="NqT-Mh-ise"/>
+                <outlet property="corner_bl" destination="YFp-9h-bfZ" id="Mkw-0k-Fwn"/>
+                <outlet property="corner_br" destination="G9v-9t-ecb" id="NwW-er-Ehc"/>
+                <outlet property="corner_tr" destination="smB-OB-2Z6" id="tvg-B9-e7s"/>
+                <outlet property="flashBtn" destination="8QO-I0-09K" id="cKl-Qk-ZuS"/>
+                <outlet property="maskContentView" destination="Zkl-eW-p3Y" id="cAW-bD-GfG"/>
+                <outlet property="maskImageViewHeightConstraint" destination="htA-cr-xaY" id="TU1-bi-gPL"/>
+                <outlet property="reviewImage" destination="qBK-So-JyS" id="opa-db-gQj"/>
+                <outlet property="view" destination="LJl-1w-UqC" id="xGY-XB-Oee"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="LJl-1w-UqC">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qBK-So-JyS" userLabel="ReviewImageCaptured">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="500" id="htA-cr-xaY"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q0X-rG-Bbe">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="2sR-rs-41q">
+                    <rect key="frame" x="0.0" y="285" width="375" height="177"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="177" id="hur-ON-B6A"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8QO-I0-09K">
+                    <rect key="frame" x="157.5" y="378.5" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="8QO-I0-09K" secondAttribute="height" multiplier="1:1" id="hyO-6M-8q0"/>
+                        <constraint firstAttribute="width" constant="60" id="xLm-qC-W6B">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="enableScaling" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                    </constraints>
+                    <state key="normal" backgroundImage="flash_camera_icon_off"/>
+                    <state key="selected" backgroundImage="flash_camera_icon_on"/>
+                    <connections>
+                        <action selector="flashAction" destination="-1" eventType="touchUpInside" id="ezT-sS-OVe"/>
+                    </connections>
+                </button>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zkl-eW-p3Y">
+                    <rect key="frame" x="40" y="127.5" width="295" height="162.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Zkl-eW-p3Y" secondAttribute="height" multiplier="167:92" id="rN1-U9-Pfc"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4F-KL-nyY">
+                    <rect key="frame" x="120" y="567" width="135" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="135" id="i1I-Ak-Pn1">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="enableScaling" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstAttribute="width" secondItem="a4F-KL-nyY" secondAttribute="height" multiplier="9:4" id="oaH-D7-I5U"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="capture_btn_icon"/>
+                    <connections>
+                        <action selector="captureAction" destination="-1" eventType="touchUpInside" id="knA-sy-0Rp"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Di chuyển camera để CMND nằm trong khung ảnh và bấm chụp" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLR-Do-ZkS">
+                    <rect key="frame" x="40" y="308" width="295" height="38.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3E-4B-UeA">
+                    <rect key="frame" x="20" y="22" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="U3E-4B-UeA" secondAttribute="height" multiplier="1:1" id="9gB-fd-z9G"/>
+                        <constraint firstAttribute="width" constant="32" id="kBs-a9-iEh">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="enableScaling" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                    </constraints>
+                    <state key="normal" backgroundImage="back_white_rounded_icon"/>
+                    <connections>
+                        <action selector="backAction" destination="-1" eventType="touchUpInside" id="171-MM-IqH"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="corner_top_left_icon" translatesAutoresizingMaskIntoConstraints="NO" id="IwK-vE-fQf" userLabel="1">
+                    <rect key="frame" x="48" y="135.5" width="12" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="12" id="v75-Lr-8Nw"/>
+                        <constraint firstAttribute="height" constant="12" id="w1v-YO-GQJ"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="corner_top_left_icon" translatesAutoresizingMaskIntoConstraints="NO" id="smB-OB-2Z6" userLabel="2">
+                    <rect key="frame" x="315" y="135.5" width="12" height="12"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="corner_top_left_icon" translatesAutoresizingMaskIntoConstraints="NO" id="YFp-9h-bfZ" userLabel="3">
+                    <rect key="frame" x="48" y="270" width="12" height="12"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="corner_top_left_icon" translatesAutoresizingMaskIntoConstraints="NO" id="G9v-9t-ecb" userLabel="4">
+                    <rect key="frame" x="315" y="270" width="12" height="12"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="q0X-rG-Bbe" firstAttribute="trailing" secondItem="LJl-1w-UqC" secondAttribute="trailing" id="0Nf-Wc-Hgk"/>
+                <constraint firstItem="U3E-4B-UeA" firstAttribute="leading" secondItem="DSL-rK-t2x" secondAttribute="leading" constant="20" id="0m2-5h-74a">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableScaling" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
+                <constraint firstItem="a4F-KL-nyY" firstAttribute="centerX" secondItem="LJl-1w-UqC" secondAttribute="centerX" id="24z-Op-FaC"/>
+                <constraint firstItem="q0X-rG-Bbe" firstAttribute="top" secondItem="LJl-1w-UqC" secondAttribute="top" id="2L5-bR-iCI"/>
+                <constraint firstItem="q0X-rG-Bbe" firstAttribute="bottom" secondItem="LJl-1w-UqC" secondAttribute="bottom" id="4SP-gg-lhi"/>
+                <constraint firstItem="zLR-Do-ZkS" firstAttribute="trailing" secondItem="Zkl-eW-p3Y" secondAttribute="trailing" id="5Do-6G-BMg"/>
+                <constraint firstItem="qBK-So-JyS" firstAttribute="leading" secondItem="DSL-rK-t2x" secondAttribute="leading" id="6LB-OK-qu2"/>
+                <constraint firstItem="qBK-So-JyS" firstAttribute="top" secondItem="LJl-1w-UqC" secondAttribute="top" id="6Qo-UU-1td"/>
+                <constraint firstItem="G9v-9t-ecb" firstAttribute="height" secondItem="smB-OB-2Z6" secondAttribute="height" id="8bN-R4-RgT"/>
+                <constraint firstItem="Zkl-eW-p3Y" firstAttribute="leading" secondItem="DSL-rK-t2x" secondAttribute="leading" constant="40" id="8fU-TI-Vst">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableScaling" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
+                <constraint firstItem="YFp-9h-bfZ" firstAttribute="bottom" secondItem="Zkl-eW-p3Y" secondAttribute="bottom" constant="-8" id="F9q-kt-Rp5"/>
+                <constraint firstItem="a4F-KL-nyY" firstAttribute="centerX" secondItem="8QO-I0-09K" secondAttribute="centerX" id="JYH-A1-CfZ"/>
+                <constraint firstItem="2sR-rs-41q" firstAttribute="centerY" secondItem="LJl-1w-UqC" secondAttribute="centerY" constant="40" id="LQG-xc-Z3H"/>
+                <constraint firstItem="a4F-KL-nyY" firstAttribute="top" secondItem="8QO-I0-09K" secondAttribute="bottom" constant="128.5" id="Lr7-IN-Ha3"/>
+                <constraint firstItem="YFp-9h-bfZ" firstAttribute="leading" secondItem="Zkl-eW-p3Y" secondAttribute="leading" constant="8" id="OMP-CZ-NTe"/>
+                <constraint firstItem="zLR-Do-ZkS" firstAttribute="top" secondItem="Zkl-eW-p3Y" secondAttribute="bottom" constant="18" id="Ocd-Bo-zvw"/>
+                <constraint firstItem="YFp-9h-bfZ" firstAttribute="height" secondItem="IwK-vE-fQf" secondAttribute="height" id="RGf-kK-M7o"/>
+                <constraint firstItem="Zkl-eW-p3Y" firstAttribute="leading" secondItem="IwK-vE-fQf" secondAttribute="leading" constant="-8" id="RUP-ML-DJT"/>
+                <constraint firstItem="qBK-So-JyS" firstAttribute="trailing" secondItem="DSL-rK-t2x" secondAttribute="trailing" id="ThR-eE-KiL"/>
+                <constraint firstItem="2sR-rs-41q" firstAttribute="trailing" secondItem="DSL-rK-t2x" secondAttribute="trailing" id="bZv-El-S1a"/>
+                <constraint firstItem="YFp-9h-bfZ" firstAttribute="width" secondItem="IwK-vE-fQf" secondAttribute="width" id="cAK-e0-B5o"/>
+                <constraint firstItem="G9v-9t-ecb" firstAttribute="bottom" secondItem="Zkl-eW-p3Y" secondAttribute="bottom" constant="-8" id="dEu-vm-V22"/>
+                <constraint firstItem="q0X-rG-Bbe" firstAttribute="leading" secondItem="LJl-1w-UqC" secondAttribute="leading" id="fZh-aT-7Ro"/>
+                <constraint firstItem="smB-OB-2Z6" firstAttribute="trailing" secondItem="Zkl-eW-p3Y" secondAttribute="trailing" constant="-8" id="fyh-GV-no1"/>
+                <constraint firstItem="Zkl-eW-p3Y" firstAttribute="top" secondItem="U3E-4B-UeA" secondAttribute="bottom" constant="73.5" id="g4z-K1-KZG">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableScaling" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
+                <constraint firstItem="G9v-9t-ecb" firstAttribute="trailing" secondItem="Zkl-eW-p3Y" secondAttribute="trailing" constant="-8" id="glg-xc-Tce"/>
+                <constraint firstItem="G9v-9t-ecb" firstAttribute="width" secondItem="smB-OB-2Z6" secondAttribute="width" id="h5p-oF-MLv"/>
+                <constraint firstItem="a4F-KL-nyY" firstAttribute="centerX" secondItem="LJl-1w-UqC" secondAttribute="centerX" id="hsu-wz-kKp"/>
+                <constraint firstItem="DSL-rK-t2x" firstAttribute="bottom" secondItem="a4F-KL-nyY" secondAttribute="bottom" constant="40" id="m2s-aZ-Nhe">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableScaling" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
+                <constraint firstItem="smB-OB-2Z6" firstAttribute="width" secondItem="IwK-vE-fQf" secondAttribute="width" id="olr-G7-azC"/>
+                <constraint firstItem="U3E-4B-UeA" firstAttribute="top" secondItem="DSL-rK-t2x" secondAttribute="top" constant="22" id="saE-iP-AT6">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableScaling" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
+                <constraint firstItem="DSL-rK-t2x" firstAttribute="trailing" secondItem="Zkl-eW-p3Y" secondAttribute="trailing" constant="40" id="tYv-DL-eOX">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableScaling" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
+                <constraint firstItem="Zkl-eW-p3Y" firstAttribute="top" secondItem="IwK-vE-fQf" secondAttribute="top" constant="-8" id="tnV-z1-Fax"/>
+                <constraint firstItem="2sR-rs-41q" firstAttribute="leading" secondItem="DSL-rK-t2x" secondAttribute="leading" id="wJC-o2-ZcV"/>
+                <constraint firstItem="zLR-Do-ZkS" firstAttribute="leading" secondItem="Zkl-eW-p3Y" secondAttribute="leading" id="xL3-J3-g6J"/>
+                <constraint firstItem="smB-OB-2Z6" firstAttribute="height" secondItem="IwK-vE-fQf" secondAttribute="height" id="y6c-dA-qw4"/>
+                <constraint firstItem="smB-OB-2Z6" firstAttribute="top" secondItem="Zkl-eW-p3Y" secondAttribute="top" constant="8" id="z5f-cM-4f8"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="DSL-rK-t2x"/>
+            <point key="canvasLocation" x="-250.40000000000001" y="23.838080959520241"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="back_white_rounded_icon" width="32" height="32"/>
+        <image name="capture_btn_icon" width="135" height="60"/>
+        <image name="corner_top_left_icon" width="12" height="12"/>
+        <image name="flash_camera_icon_off" width="60" height="60"/>
+        <image name="flash_camera_icon_on" width="60" height="60"/>
+        <image name="gradient.png" width="288" height="358"/>
+    </resources>
+</document>

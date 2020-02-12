@@ -109,7 +109,7 @@ extension UIImage {
         }
     }
     
-    func getCroppedImage(byCropInfo info: CropInfo) -> UIImage? {
+    open func getCroppedImage(byCropInfo info: CropInfo) -> UIImage? {
         guard let fixedImage = self.cgImageWithFixedOrientation() else {
             return nil
         }

@@ -9,7 +9,7 @@
 import UIKit
 import Mantis
 
-class ViewController: UIViewController, CropViewControllerDelegate {
+class ViewController: UIViewController {
     func cropViewControllerDidRender(_ cropViewController: CropViewController) {
         print("cropViewControllerDidRender(_ cropViewController: CropViewController)")
     }
@@ -38,16 +38,19 @@ class ViewController: UIViewController, CropViewControllerDelegate {
     }
     
     @IBAction func normalPresent(_ sender: Any) {
-        guard let image = image else {
-            return
-        }
-        
-        let config = Mantis.Config()
-        
-        let cropViewController = Mantis.cropViewController(image: image, config: config)
-        cropViewController.modalPresentationStyle = .fullScreen
-        cropViewController.delegate = self
-        present(cropViewController, animated: true)
+        let vc = CustomCameraViewController.loadCamera()
+        self.present(vc, animated: true, completion: nil)
+        vc.delegate = self
+//        guard let image = image else {
+//            return
+//        }
+//
+//        let config = Mantis.Config()
+//
+//        let cropViewController = Mantis.cropViewController(image: image, config: config)
+//        cropViewController.modalPresentationStyle = .fullScreen
+//        cropViewController.delegate = self
+//        present(cropViewController, animated: true)
     }
     
     @IBAction func hideRotationDialPresent(_ sender: Any) {
@@ -103,13 +106,22 @@ class ViewController: UIViewController, CropViewControllerDelegate {
             }
         }
     }
-    
+}
+
+extension ViewController: CustomCameraViewControllerDelegate {
+    func didCapture(_ cameraViewController: CustomCameraViewController, cropped: UIImage?) {
+        croppedImageView.image = cropped
+        cameraViewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ViewController: CropViewControllerDelegate {
     func cropViewControllerWillDismiss(_ cropViewController: CropViewController) {
         print("sdasdasdas")
     }
     func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage) {
         croppedImageView.image = cropped
-    }    
+    }
 }
 
 extension ViewController: ImagePickerDelegate {

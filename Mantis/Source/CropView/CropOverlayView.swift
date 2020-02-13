@@ -220,7 +220,7 @@ extension CropOverlayView {
     }
 }
 
-fileprivate
+public
 extension UIView {
 
     /**

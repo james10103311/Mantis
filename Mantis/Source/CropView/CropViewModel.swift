@@ -25,6 +25,7 @@ enum ImageRotationType: CGFloat {
 
 class CropViewModel: NSObject {
     var statusChanged: (_ status: CropViewStatus)->Void = { _ in }
+    var cropBoxChanged: (_ frame: CGRect)->Void = { _ in }
     
     var viewStatus: CropViewStatus = .initial {
         didSet {
@@ -32,7 +33,13 @@ class CropViewModel: NSObject {
         }
     }
     
-    @objc dynamic var cropBoxFrame = CGRect.zero
+    @objc dynamic var cropBoxFrame = CGRect.zero {
+        didSet {
+            didChangeCropBoxFrame(cropBoxFrame)
+        }
+    }
+    private func didChangeCropBoxFrame(_ frame: CGRect) { cropBoxChanged(frame) }
+    
     var cropOrignFrame = CGRect.zero
     
     var panOriginPoint = CGPoint.zero

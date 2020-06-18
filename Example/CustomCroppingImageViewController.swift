@@ -73,7 +73,6 @@ extension CustomCroppingImageViewController: CropViewControllerDelegate {
     }
     
     func cropViewControllerWillDismiss(_ cropViewController: CropViewController) {
-        print("sdasdasdas")
     }
     func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage) {
         //        croppedImageView.image = cropped
